@@ -15,16 +15,21 @@ export default function Home() {
     try {
       const response = await fetch('/api/trends');
       if (!response.ok) {
-        throw new Error('Failed to fetch trends');
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
+      if (data.error) {
+        throw new Error(data.error);
+      }
       setHashtags(data.trends);
     } catch (err) {
-      setError('Failed to fetch trends. Please try again.');
+      console.error('Error fetching trends:', err);
+      setError('Failed to fetch trends. Please try again later.');
     } finally {
       setIsLoading(false);
     }
-  };
+  };  
+}
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">

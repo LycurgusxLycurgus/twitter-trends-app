@@ -4,9 +4,8 @@ import cheerio from 'cheerio';
 
 export async function GET() {
   try {
-    const corsProxy = 'https://cors-anywhere.herokuapp.com/';
     const twitterTrendsUrl = 'https://twitter-trends.iamrohit.in/united-states';
-    const response = await axios.get(corsProxy + twitterTrendsUrl);
+    const response = await axios.get(twitterTrendsUrl);
     const $ = cheerio.load(response.data);
     
     const trends: string[] = [];

@@ -27,7 +27,8 @@ const TrendingHashtags: React.FC = () => {
       setHashtags(data.trends);
     } catch (err) {
       console.error('Error fetching trends:', err);
-      setError(`Failed to fetch trends: ${err.message}`);
+      const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';
+      setError(`Failed to fetch trends: ${errorMessage}`);
     } finally {
       setIsLoading(false);
     }

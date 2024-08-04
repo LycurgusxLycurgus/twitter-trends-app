@@ -13,18 +13,21 @@ const TrendingHashtags: React.FC = () => {
     setIsLoading(true);
     setError(null);
     try {
+      console.log('Fetching trends...');
       const response = await fetch('/api/trends');
+      console.log('Response status:', response.status);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
+      console.log('Received data:', data);
       if (data.error) {
         throw new Error(data.error);
       }
       setHashtags(data.trends);
     } catch (err) {
       console.error('Error fetching trends:', err);
-      setError('Failed to fetch trends. Please try again later.');
+      setError(`Failed to fetch trends: ${err.message}`);
     } finally {
       setIsLoading(false);
     }

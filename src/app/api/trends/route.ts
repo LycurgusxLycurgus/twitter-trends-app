@@ -19,6 +19,7 @@ export async function GET() {
     return NextResponse.json({ trends });
   } catch (error) {
     console.error('API: Error fetching trends:', error);
-    return NextResponse.json({ error: `Failed to fetch trends: ${error.message}` }, { status: 500 });
+    const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+    return NextResponse.json({ error: `Failed to fetch trends: ${errorMessage}` }, { status: 500 });
   }
 }

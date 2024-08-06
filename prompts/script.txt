@@ -1,0 +1,9 @@
+Adapted to VScode
+
+1. Git bash
+
+2. chmod +x combine_code.sh
+
+3. run it:
+
+    ./prompts/combine_code.sh
